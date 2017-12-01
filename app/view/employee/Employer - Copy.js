@@ -1,0 +1,201 @@
+Ext.define('MyApp.view.employee.Employer', {
+	extend : 'Ext.grid.Panel',
+	alias : 'widget.employeeList',
+	title : 'Employer',
+	requires : ['Ext.selection.CellModel', 'Ext.grid.*', 'Ext.data.*', 'Ext.util.*', 'Ext.form.*', 'MyApp.view.employee.EmployeeViewModel', 'MyApp.view.employee.EmployeeController'],
+	plugins : [{
+			xclass : 'Ext.grid.plugin.RowEditing',
+			clicksToMoveEditor : 1,
+			autoCancel : false
+		}
+	],
+	controller : 'employeeController',// injected viewcontroller
+	viewModel : {
+		type : 'employeeViewport'// injected viewmodel
+	},
+	selModel : {
+		selType : 'rowmodel'
+	},
+	bind : {
+		store : '{employeeStore}'
+	},
+	tbar : [{
+			text : 'Add Employee',
+			scope : this,
+			listeners : {
+				click : 'onAddEmployee'
+			}
+		}, {
+			text : 'Edit Employee',
+			scope : this,
+			listeners : {
+				click : 'updateEmployee'
+			}
+		}, {
+			text : 'Delete Employee',
+			scope : this,
+			listeners : {
+				click : 'deleteEmployee'
+			}
+		}
+	],
+	columns : [{
+			text : 'Name',
+			dataIndex : 'name',
+			flex : 1,
+			editor : {
+				allowBlank : false
+			},
+					renderer : function (value, metaData, record, rowIndex, colIndex, store, view) {
+ 							 metaData.tdAttr = 'data-qtip="' + value + '"';
+ 							 return value; 
+				}
+		}, {
+			text : 'Mobile',
+			dataIndex : 'mobile',
+			flex : 1,
+			editor : {
+				xtype : 'textfield',
+				allowBlank : false,
+				maxLength : 10,
+				enforceMaxLength : true,
+				stripCharsRe : /^\s+/g,// allow stripping
+				maskRe : /[+0-9+-+()]/,
+			},
+					renderer : function (value, metaData, record, rowIndex, colIndex, store, view) {
+ 							 metaData.tdAttr = 'data-qtip="' + value + '"';// for quicktip
+ 							 return value; 
+				}
+		}, {
+			text : 'Email',
+			dataIndex : 'email',
+			flex : 2,
+			editor : {
+				allowBlank : false,
+				xtype : 'textfield',
+				name : 'email',
+				maxLength : 35,
+				enforceMaxLength : true,
+			},
+					renderer : function (value, metaData, record, rowIndex, colIndex, store, view) {
+ 							 metaData.tdAttr = 'data-qtip="' + value + '"';
+ 							 return value; 
+				}
+		}, {
+			text : 'Gender',
+			dataIndex : 'gender',
+			flex : 1,
+			editor : {
+				allowBlank : false
+			},
+					renderer : function (value, metaData, record, rowIndex, colIndex, store, view) {
+ 							 metaData.tdAttr = 'data-qtip="' + value + '"';
+ 							 return value; 
+				}
+		}, {
+			text : 'Reporting Manager',
+			dataIndex : 'reportingManager',
+			flex : 1,
+			editor : {
+				allowBlank : false
+			},
+					renderer : function (value, metaData, record, rowIndex, colIndex, store, view) {
+ 							 metaData.tdAttr = 'data-qtip="' + value + '"';
+ 							 return value; 
+				}
+		}, {
+			text : 'Leaves',
+			columns : [{
+					text : 'PL',
+					dataIndex : 'pl',
+					tdCls : 'x-grid-cell',
+					width : null,
+					groupable : false,
+					renderer : function (value, metaData, record, rowIndex, colIndex, store, view) {
+						 metaData.tdAttr = 'data-qtip="' + value + '"';
+						var newvalue;
+						if (parseInt(value) == 6) {
+							newvalue = "<span style='color:green;font-weight:bold' >" + value + "</span>";
+						} else if (parseInt(value) == 0) {
+							newvalue = "<span style='color:red;font-weight:bold' >" + value + "</span>";
+						} else {
+							newvalue = "<span font-weight:bold' >" + value + "</span>";
+						}
+						return newvalue;
+					}
+				}, {
+					text : 'SL',
+					dataIndex : 'sl',
+					width : null,
+					groupable : false,
+					renderer : function (value, metaData, record, rowIndex, colIndex, store, view) {
+						 metaData.tdAttr = 'data-qtip="' + value + '"';
+						var newvalue;
+						if (parseInt(value) == 6) {
+							newvalue = "<span style='color:green;font-weight:bold' >" + value + "</span>";
+						} else if (parseInt(value) == 0) {
+							newvalue = "<span style='color:red;font-weight:bold' >" + value + "</span>";
+						} else {
+							newvalue = "<span font-weight:bold' >" + value + "</span>";
+						}
+						return newvalue;
+					}
+				}, {
+					text : 'CL',
+					dataIndex : 'cl',
+					width : null,
+					groupable : false,
+					renderer : function (value, metaData, record, rowIndex, colIndex, store, view) {
+						 metaData.tdAttr = 'data-qtip="' + value + '"';
+						var newvalue;
+						if (parseInt(value) == 15) {
+							newvalue = "<span style='color:green;font-weight:bold' >" + value + "</span>";
+						} else if (parseInt(value) == 0) {
+							newvalue = "<span style='color:red;font-weight:bold' >" + value + "</span>";
+						} else {
+							newvalue = "<span font-weight:bold' >" + value + "</span>";
+						}
+						return newvalue;
+					}
+				}
+			]
+		}, ],
+	viewConfig : {
+		getRowClass : function (record, index) {
+			if (record.get('pl') == 0 && record.get('sl') == 0 && record.get('cl') == 0) {
+				return 'red';
+			}
+		}
+	},
+	/*listeners : {
+		itemdblclick : function (dv, record, item, index, e) {
+		 Ext.widget('employeeEdit');
+		},
+	}*/
+	listeners : {	
+	itemdblclick:	'gridRowClick',
+			scope:this
+
+	},
+		//scope:'controller'
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

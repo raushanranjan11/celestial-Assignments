@@ -1,0 +1,20 @@
+[{
+"text": "United Kindom",
+"children": [{
+    "text": "Glasgow",
+    "leaf": true
+}, {
+    "text": "Edinburgh",
+    "leaf": true
+}, {
+    "text": "London",
+    "leaf": true
+}],
+"leaf": false
+},
+{
+    "text": "France",
+    "leaf": true
+}
+ 
+]

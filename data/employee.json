@@ -1,0 +1,11 @@
+ {rows:[
+                      {name:'Raushan',mobile:'123',email:'raushan@abc.com',reportingManager:'A',leaves:'PL',gender:'M',sl:6,pl:6,cl:15},
+				  {name:'Pankaj',mobile:'123',email:'pankaj@abc.com',reportingManager:'A',leaves:' SL',gender:'M',pl:6,sl:6,cl:15},
+				  {name:'Rohan',mobile:'123',email:'rohan@abc.com',reportingManager:'A',leaves:'CL',gender:'M',cl:11,sl:3,pl:2},
+				    {name:'Mayak',mobile:'123',email:'mayank@abc.com',reportingManager:'A',leaves:'PL',gender:'M',cl:13,sl:0,pl:5},
+				  {name:'Ranjan',mobile:'123',email:'ranjan@abc.com',reportingManager:'A',leaves:' SL',gender:'M',pl:0,sl:0,cl:0},
+				  {name:'kaushal',mobile:'123',email:'kaushal@abc.com',reportingManager:'A',leaves:'CL',gender:'M',sl:2,cl:14,pl:5}
+               
+                
+                ],
+		}
